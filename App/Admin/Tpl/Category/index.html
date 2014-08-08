@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    
+    <link href="__PUBLIC__/css/common.css" rel="stylesheet" type="text/css" />
+
+   <hdjs/>
+<css file='__PUBLIC__/css/right.css'/>
+<bootstrap/>
+    <js file='__PUBLIC__/js/common.js'/>
+    
+
+</head>
+
+<body>
+
+
+
+    <div class="rightinfo">
+
+        <div class="tools">
+
+            <ul class="toolbar">
+                <li >
+                    <a href='{|U:add}'>
+                        <img src="__PUBLIC__/images/t01.png" />
+                        添加分类
+                    </a>
+                </li>
+                <li >
+                    <a href='javascript:;' onclick="hd_ajax('{|U:update_cache}')">
+                        <img src="__PUBLIC__/images/t05.png" />
+                        更新分类缓存
+                    </a>
+                </li>
+            </ul>
+
+            
+        </div>
+
+    </div>
+
+    <table id="table" class='table2 hd-form'>
+        <thead>
+            <tr>
+                <th width="1%"></th>
+                <th >分类名称</th>
+          
+                <th >分类排序</th>
+                <th >是否显示</th>
+                <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <list from ="$category" name='v'>
+            <tr class="level_{$v._level} pid_{$v.pid}" cid="{$v.cid}" level="{$v.level}">
+                <td><a class=' btn-xs btn-info unfold' style="font-size:16px;" href="">+</a></td>
+                <td>{$v._name}</td>
+                
+                <td>{$v.sort}</td>
+                <td>
+                    <if value="$v.display">
+                        显示
+                        <else/>
+                        隐藏
+                    </if>
+                </td>
+                <td>
+                    <a class=' btn-success btn-xs' href="{|U:add,array('cid'=>$v['cid'])}">添加子类</a>
+                    <a class=' btn-danger btn-xs' href="{|U:edit,array('cid'=>$v['cid'])}">编辑</a>
+                    <a class='btn-warning btn-xs' href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax('{|U:del}',{cid:{$v.cid}})})">
+                                    删除
+                                </a>
+                    
+                </td>
+            </tr>
+        </list>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

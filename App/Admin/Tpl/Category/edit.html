@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css" />
+    <hdjs/>
+    <js file='__PUBLIC__/js/validate.js'/>
+</head>
+
+<body>
+
+<!--     <div class="place">
+   
+    <ul class="placeul">
+        <li>
+            <a href="__URL__">首页</a>
+        </li>
+        <li>
+            <a href="{|U:index}">分类管理</a>
+        </li>
+        <li>
+            <a href="{|U:add}">添加分类</a>
+        </li>
+    </ul>
+</div>
+ -->
+    <div class="formbody">
+
+        <div class="formtitle">
+            <span>编辑分类</span>
+        </div>
+        <form class='hd-form' action='{|U:edit}' method='post' onsubmit="return hd_submit(this,'{|U:index}')" >
+        <input type='hidden' name='cid' value='{$field.cid}'/>
+            <table class='table1'>
+                <tr>
+                    <th>上级分类</th>
+                    <td>
+                        <select name="pid" class="w200">
+                       
+                             <option value="0">顶级栏目</option>
+                            <list from="$category" name="c">
+                                <option value="{$c.cid}"
+                                    {$c.selected} {$c.disabled}
+                                >{$c._name}
+                            </option>
+                        </list>
+                        
+                            
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>分类名称</th>
+                <td>
+                    <input type="text" name="catname" required="" class="w300" value='{$field.catname}'/>
+                </td>
+            </tr>
+            <tr>
+                <th>导航显示</th>
+                <td>
+              
+                    <label>
+                        <input type="radio" name="display" value="1" <if value='{$field.display}==1'>checked="checked"</if>/>
+                        是
+                    </label>
+                     <label>
+                        <input type="radio" name="display" value="0" <if value='{$field.display}==0'>checked="checked"</if>/>
+                        否
+                    </label>
+                    
+                    <span class="validate-message">前台使用&lt;channel&gt;标签时是否显示</span>
+                </td>
+            </tr>
+            <tr>
+                <th>分类排序</th>
+                <td>
+                    <input type='text' name='sort' value='{$field.sort}' />
+                </td>
+            </tr>
+            <tr>
+
+                <th>SEO标题</th>
+                <td>
+                    <input type="text" name="pagetitle"  class="w300" value='{$field.pagetitle}'/>
+                </td>
+            </tr>
+            <tr>
+
+                <th class='w100'>关键词</th>
+                <td>
+                    <input type="text" name="pagekeywords" class="w300" value='{$field.pagekeywords}'/>
+                </td>
+            </tr>
+            <tr>
+
+                <th>描述</th>
+                <td>
+                    <textarea name='pagedesc' class='w400 h150'>{$field.pagedesc}</textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="position-bottom" >
+            <input type="submit" class="hd-success" value="确定"/>
+            <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
